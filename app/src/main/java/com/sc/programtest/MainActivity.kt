@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         tvTime = findViewById(R.id.tv_time)
         edtAmount = findViewById(R.id.edt_amount)
         edtTime = findViewById(R.id.edt_time)
+        btnSubmit = findViewById(R.id.btn_submit)
         btnSubmit.setOnClickListener(this)
         edtAmount.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
