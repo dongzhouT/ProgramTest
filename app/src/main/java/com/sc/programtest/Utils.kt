@@ -17,10 +17,10 @@ fun String.toTime():String{
         return ""
     }else{
         val value = this.toLongValue()
-        return if(value>60){
-            "${value/60}m${value%60}s"
+        if(value>60){
+            return "${value/60}m${value%60}s"
         }else{
-            "${value%60}s"
+            return "${value%60}s"
         }
 
     }

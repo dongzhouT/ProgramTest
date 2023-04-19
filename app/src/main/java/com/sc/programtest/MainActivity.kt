@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var edtAmount:EditText
     lateinit var edtTime:EditText
     lateinit var btnSubmit:Button
+    var amountValue = 0L
+    var timeValue = 0L
     val AMOUNT = "Amount:"
     val TIME = "Time:"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
             override fun afterTextChanged(s: Editable?) {
                 //do nothing
+                amountValue = s.toString().toLongValue()
                 tvAmount.text = "$AMOUNT${s.toString().toAmount()}"
             }
 
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
             override fun afterTextChanged(s: Editable?) {
                 //do nothing
+                timeValue = s.toString().toLongValue()
                 tvTime.text = "$TIME${s.toString().toTime()}"
             }
 
@@ -65,7 +69,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id){
             //跳转activity
-            R.id.btn_submit->startActivity(Intent(this@MainActivity,ResultActivity::class.java))
+            R.id.btn_submit->{
+                val intent = Intent(this@MainActivity,ResultActivity::class.java)
+                intent.putExtra(ResultActivity.EXTRA_RESULT,amountValue * timeValue)
+                startActivity(intent)
+            }
         }
     }
 }
